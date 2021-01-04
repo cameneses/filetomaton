@@ -3,10 +3,14 @@ import logging
 import os
 import time
 
+from dotenv import load_dotenv
 from watchdog.events import FileSystemEventHandler
 from watchdog.observers import Observer
 
-folder_to_track = "/home/cesar/Downloads/"
+load_dotenv()
+
+
+folder_to_track = os.getenv("FOLDER_TO_TRACK")
 
 file_types = {".pdf": "PDF Files", ".png": "Images",
               ".jpeg": "Images", ".jpg": "Images", ".gif": "Images",
@@ -14,7 +18,7 @@ file_types = {".pdf": "PDF Files", ".png": "Images",
               ".rar": "Compressed files", ".tar.xz": "Compressed files",
               ".gz": "Compressed files", ".epub": "Books", ".deb": "Packages"}
 
-logging.basicConfig(level=logging.DEBUG, filename="logfile", filemode="a+",
+logging.basicConfig(level=logging.INFO, filename="logfile", filemode="a+",
                     format="%(asctime)-15s %(levelname)-8s %(message)s")
 
 
